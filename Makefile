@@ -1,5 +1,5 @@
-output:main.o agen.o bSort.o selSort.o iSort.o mSort.o countSort.o qSort.o
-	gcc main.o agen.o bSort.o selSort.o iSort.o mSort.o countSort.o qSort.o -o output
+output:main.o agen.o bSort.o selSort.o iSort.o mSort.o countSort.o qSort.o scramble.o
+	gcc main.o agen.o bSort.o selSort.o iSort.o mSort.o countSort.o qSort.o scramble.o -o output
 
 main.o: main.c
 	gcc -c main.c
@@ -24,6 +24,9 @@ countSort.o: countSort.c countSort.h
 
 qSort.o: qSort.c qSort.h
 	gcc -c qSort.c qSort.h
+
+scramble.o: scramble.c scramble.h
+	gcc -c scramble.c
 
 clean:
 	rm *.o 
