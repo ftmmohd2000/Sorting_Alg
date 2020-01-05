@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include "agen.h"
 #include "bSort.h"
@@ -11,31 +12,48 @@
 int main(){
     
     int i,n;
-    int *myarr = NULL;
-
-    printf("Please enter number: ");
-    scanf("%d", &n);
-
-    myarr = agen(time(NULL),n);
-
-    printf("Array before sorting:\n");
-
-    for(i=0;i<(n);i++) 
-        printf("%d\t",myarr[i]);
-
+    int *myarr,*temp;
+    clock_t start,end;
+    double finalTime;
+    char *sortNames[] = {"Bubble Sort","Selection Sort","Insertion Sort","Merge Sort","Counting Sort","Quick Sort"}; 
     
-    printf("\n");
-    
-    //bSort(myarr,(n));
-    mSort(myarr,n);
 
-    printf("Array after sorting:\n");
+    printf("Enter number of elements to be sorted: ");
+    scanf("%d",&n);
 
-    for(i=0;i<(n);i++) 
-        printf("%d\t",myarr[i]);
+    temp = agen(time(NULL),n);
 
-    printf("\n");
+    for(i=0;i<6;i++){
+        myarr = temp;
+        start = clock();
+        
+        switch (i)
+        {
+        case 0:
+            //bSort(myarr,n);
+            break;
+        case 1:
+            //selSort(myarr,n);
+            break;
+        case 2:
+            //iSort(&myarr,n);
+            break;
+        case 3:
+            mSort(myarr,n);
+            break;
+        case 4:
+            countSort(myarr,n);
+            break;
+        case 5:
+            qSort(myarr,n);
+            break;
+        default:
+            break;
+        }
+        end = clock();
 
+        printf("%s takes %lf seconds with a %d elements in this run.\n",sortNames[i],((double) (end - start)) / CLOCKS_PER_SEC,n);
+    }
 
     return 0;
 }
